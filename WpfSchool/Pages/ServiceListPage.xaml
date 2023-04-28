@@ -319,6 +319,7 @@
                     <ComboBoxItem>от 70 до 100</ComboBoxItem>
                 </ComboBox>
             </StackPanel>
+            <TextBox Style="{StaticResource placeHolderForPrice}" Width="210" Height="30" Tag="Введите название услуги" FontSize="16" Margin="0 30 0 0"/>
         </Grid>
         <ListView x:Name="LvService" Grid.Row="1" Height="310" d:ItemsSource="{d:SampleData ItemCount=5}">
             <ListView.ItemTemplate>
