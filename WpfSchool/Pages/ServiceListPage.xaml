@@ -308,6 +308,17 @@
                     <ComboBoxItem>По убыванию</ComboBoxItem>
                 </ComboBox>
             </StackPanel>
+            <StackPanel HorizontalAlignment="Right" Margin="0 10 100 0">
+                <TextBlock Text="Скидка" Foreground="Black" HorizontalAlignment="Center" FontSize="20"/>
+                <ComboBox Height="30" Width="150" SelectedIndex="0" FontSize="14">
+                    <ComboBoxItem>Без скидки</ComboBoxItem>
+                    <ComboBoxItem>от 0 до 5</ComboBoxItem>
+                    <ComboBoxItem>от 5 до 15</ComboBoxItem>
+                    <ComboBoxItem>от 15 до 30</ComboBoxItem>
+                    <ComboBoxItem>от 30 до 70</ComboBoxItem>
+                    <ComboBoxItem>от 70 до 100</ComboBoxItem>
+                </ComboBox>
+            </StackPanel>
         </Grid>
         <ListView x:Name="LvService" Grid.Row="1" Height="310" d:ItemsSource="{d:SampleData ItemCount=5}">
             <ListView.ItemTemplate>
