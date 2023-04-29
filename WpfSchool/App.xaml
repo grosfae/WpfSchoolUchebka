@@ -28,7 +28,25 @@
             </Style.Triggers>
         </Style>
 
-        
+        <Style TargetType="Button" x:Key="WhiteBtn">
+            <Setter Property="Foreground" Value="Black"/>
+            <Setter Property="Background" Value="White"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type Button}">
+                        <Border Background="{TemplateBinding Background}" CornerRadius="2" BorderThickness="{TemplateBinding BorderThickness}" BorderBrush="{TemplateBinding BorderBrush}">
+                            <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                        </Border>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+            <Style.Triggers>
+                <Trigger Property="IsMouseOver" Value="True">
+                    <Setter Property="Foreground" Value="White"/>
+                    <Setter Property="Background" Value="#FF04A0FF"/>
+                </Trigger>
+            </Style.Triggers>
+        </Style>
         
         
         <Style x:Key="placeHolderForPrice" TargetType="{x:Type TextBox}" BasedOn="{StaticResource {x:Type TextBox}}">

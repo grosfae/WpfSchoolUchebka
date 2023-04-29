@@ -103,6 +103,7 @@
           <Property Name="Discount" Type="float" />
           <Property Name="MainImagePath" Type="nvarchar" MaxLength="1000" />
           <Property Name="Logo" Type="varbinary(max)" />
+          <Property Name="IsDelete" Type="bit" />
         </EntityType>
         <EntityType Name="ServicePhoto">
           <Key>
@@ -532,6 +533,7 @@
           <Property Name="Discount" Type="Double" />
           <Property Name="MainImagePath" Type="String" MaxLength="1000" FixedLength="false" Unicode="true" />
           <Property Name="Logo" Type="Binary" MaxLength="Max" FixedLength="false" />
+          <Property Name="IsDelete" Type="Boolean" />
           <NavigationProperty Name="ClientService" Relationship="SchoolLanguageModel.FK_ClientService_Service" FromRole="Service" ToRole="ClientService" />
           <NavigationProperty Name="ServicePhoto" Relationship="SchoolLanguageModel.FK_ServicePhoto_Service" FromRole="Service" ToRole="ServicePhoto" />
         </EntityType>
@@ -679,7 +681,7 @@
           <End Type="SchoolLanguageModel.Client" Role="Client" Multiplicity="*" />
           <End Type="SchoolLanguageModel.Tag" Role="Tag" Multiplicity="*" />
         </Association>
-      </Schema>
+        </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
     <edmx:Mappings>
@@ -774,6 +776,7 @@
           <EntitySetMapping Name="Service">
             <EntityTypeMapping TypeName="SchoolLanguageModel.Service">
               <MappingFragment StoreEntitySet="Service">
+                <ScalarProperty Name="IsDelete" ColumnName="IsDelete" />
                 <ScalarProperty Name="Logo" ColumnName="Logo" />
                 <ScalarProperty Name="MainImagePath" ColumnName="MainImagePath" />
                 <ScalarProperty Name="Discount" ColumnName="Discount" />

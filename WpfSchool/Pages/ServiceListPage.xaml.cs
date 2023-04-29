@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -24,7 +25,6 @@ namespace WpfSchool.Pages
         public ServiceListPage()
         {
             InitializeComponent();
-            LvService.ItemsSource = App.DB.Service.ToList();
             CbDiscount.SelectedIndex = 0;
             CbSort.SelectedIndex = 0;
             App.PageName = "Список услуг";   
@@ -42,7 +42,7 @@ namespace WpfSchool.Pages
 
         private void Refresh()
         {
-            IEnumerable<Service> services = App.DB.Service;
+            IEnumerable<Service> services = App.DB.Service.Where(x => x.IsDelete != true);
             if (CbSort.SelectedIndex == 0)
                 services = services.OrderBy(x => x.CostDiscount);
             else if (CbSort.SelectedIndex == 1)
@@ -80,6 +80,36 @@ namespace WpfSchool.Pages
             }
 
             LvService.ItemsSource = services.ToList();
+        }
+
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            foreach(var item in App.DB.Service)
+            {
+                item.Logo = File.ReadAllBytes($"C:/Users/progWeb/Desktop/{item.MainImagePath}");
+            }
+            App.DB.SaveChanges();
+        }
+
+        private void Page_Loaded(object sender, RoutedEventArgs e)
+        {
+            Refresh();
+        }
+
+        private void WriteClientBtn_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void DeleteBtn_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void EditBtn_Click(object sender, RoutedEventArgs e)
+        {
+            var selectedItem = (sender as Button).DataContext as Service;
+            NavigationService.Navigate(new ServiceAddEdit(selectedItem));
         }
     }
 }
