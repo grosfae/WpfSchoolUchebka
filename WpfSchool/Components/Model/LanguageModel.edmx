@@ -111,7 +111,7 @@
           </Key>
           <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="ServiceID" Type="int" Nullable="false" />
-          <Property Name="PhotoPath" Type="nvarchar" MaxLength="1000" Nullable="false" />
+          <Property Name="PhotoPath" Type="varbinary(max)" Nullable="false" />
         </EntityType>
         <EntityType Name="sysdiagrams">
           <Key>
@@ -543,7 +543,7 @@
           </Key>
           <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="ServiceID" Type="Int32" Nullable="false" />
-          <Property Name="PhotoPath" Type="String" Nullable="false" MaxLength="1000" FixedLength="false" Unicode="true" />
+          <Property Name="PhotoPath" Type="Binary" Nullable="false" MaxLength="Max" FixedLength="false" />
           <NavigationProperty Name="Service" Relationship="SchoolLanguageModel.FK_ServicePhoto_Service" FromRole="ServicePhoto" ToRole="Service" />
         </EntityType>
         <EntityType Name="sysdiagrams">

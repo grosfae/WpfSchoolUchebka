@@ -28,5 +28,20 @@ namespace WpfSchool.Pages
             contextService = service;
             DataContext = contextService;
         }
+
+        private void LeftBtn_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void RightBtn_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void BackBtn_Click(object sender, RoutedEventArgs e)
+        {
+            NavigationService.Content= new ServiceListPage();
+        }
     }
 }
