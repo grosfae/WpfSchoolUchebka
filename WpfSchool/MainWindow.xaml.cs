@@ -25,6 +25,23 @@ namespace WpfSchool
         {
             InitializeComponent();
             MainFrame.Navigate(new ServiceListPage());
+            TbTitlePage.Text = App.PageName.ToString();
+            
+        }
+
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            if(App.AdminMode == true)
+            {
+                MessageBox.Show("Админка уже включена");
+                return;
+            }    
+            if(TbCode.Text == "0000")
+            {
+                MessageBox.Show("Админка включена");
+                App.AdminMode = true;
+                MainFrame.Navigate(new ServiceListPage());
+            }
         }
     }
 }

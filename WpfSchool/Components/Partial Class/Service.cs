@@ -69,5 +69,18 @@ namespace WpfSchool.Components.Model
                     return (decimal)Cost - Convert.ToDecimal(Cost) * Convert.ToDecimal(Discount);
             }
         }
+
+        public Visibility AdminVisible
+        {
+            get
+            {
+                if(App.AdminMode == true)
+                {
+                    return Visibility.Visible;
+                }
+                else
+                    return Visibility.Collapsed;
+            }
+        }
     }
 }
