@@ -26,6 +26,7 @@ namespace WpfSchool.Components.Model
         public int ServiceID { get; set; }
         public System.DateTime StartTime { get; set; }
         public string Comment { get; set; }
+        public Nullable<bool> IsDelete { get; set; }
     
         public virtual Client Client { get; set; }
         public virtual Service Service { get; set; }

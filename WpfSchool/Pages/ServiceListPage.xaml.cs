@@ -76,7 +76,7 @@ namespace WpfSchool.Pages
             
             if (TbSearch.Text.Length > 0)
             {
-                services = services.Where(x => x.Title.ToLower().StartsWith(TbSearch.Text.ToLower()) || x.Description.ToLower().StartsWith(TbSearch.Text.ToLower()));
+                services = services.Where(x => x.Title.ToLower().Contains(TbSearch.Text.ToLower()) || x.Description.ToLower().Contains(TbSearch.Text.ToLower()));
             }
 
             LvService.ItemsSource = services.ToList();
@@ -94,22 +94,35 @@ namespace WpfSchool.Pages
         private void Page_Loaded(object sender, RoutedEventArgs e)
         {
             Refresh();
+            if(App.AdminMode == true)
+            {
+                AddBtn.Visibility = Visibility.Visible;
+            }
         }
 
         private void WriteClientBtn_Click(object sender, RoutedEventArgs e)
         {
-
+                var selectedItem = (sender as Button).DataContext as Service;
+                NavigationService.Navigate(new ClientServiceAddEdit(selectedItem));
         }
 
         private void DeleteBtn_Click(object sender, RoutedEventArgs e)
         {
-
+            var selectedItem = (sender as Button).DataContext as Service;
+            selectedItem.IsDelete = true;
+            App.DB.SaveChanges();
+            Refresh();
         }
 
         private void EditBtn_Click(object sender, RoutedEventArgs e)
         {
             var selectedItem = (sender as Button).DataContext as Service;
             NavigationService.Navigate(new ServiceAddEdit(selectedItem));
+        }
+
+        private void AddBtn_Click(object sender, RoutedEventArgs e)
+        {
+            NavigationService.Navigate(new ServiceAddEdit(new Service()));
         }
     }
 }

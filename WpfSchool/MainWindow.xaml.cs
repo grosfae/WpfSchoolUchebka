@@ -41,7 +41,30 @@ namespace WpfSchool
                 MessageBox.Show("Админка включена");
                 App.AdminMode = true;
                 MainFrame.Navigate(new ServiceListPage());
+                ServiceClientListBtn.Visibility = Visibility.Visible;
             }
+        }
+
+        private void MainFrame_Navigated(object sender, NavigationEventArgs e)
+        {
+            TbTitlePage.Text = App.PageName.ToString();
+        }
+
+        private void ServiceListBtn_Click(object sender, RoutedEventArgs e)
+        {
+            App.PageName = "Список услуг";
+            MainFrame.Navigate(new ServiceListPage());
+        }
+
+        private void ServiceClientListBtn_Click(object sender, RoutedEventArgs e)
+        {
+            App.PageName = "Список записей";
+            MainFrame.Navigate(new ServiceClientList());
+        }
+
+        private void Window_Loaded(object sender, RoutedEventArgs e)
+        {
+
         }
     }
 }

@@ -37,6 +37,7 @@
           <Property Name="ServiceID" Type="int" Nullable="false" />
           <Property Name="StartTime" Type="datetime" Nullable="false" />
           <Property Name="Comment" Type="nvarchar(max)" />
+          <Property Name="IsDelete" Type="bit" />
         </EntityType>
         <EntityType Name="DocumentByService">
           <Key>
@@ -452,6 +453,7 @@
           <Property Name="ServiceID" Type="Int32" Nullable="false" />
           <Property Name="StartTime" Type="DateTime" Nullable="false" Precision="3" />
           <Property Name="Comment" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="IsDelete" Type="Boolean" />
           <NavigationProperty Name="Client" Relationship="SchoolLanguageModel.FK_ClientService_Client" FromRole="ClientService" ToRole="Client" />
           <NavigationProperty Name="Service" Relationship="SchoolLanguageModel.FK_ClientService_Service" FromRole="ClientService" ToRole="Service" />
           <NavigationProperty Name="DocumentByService" Relationship="SchoolLanguageModel.FK_DocumentByService_ClientService" FromRole="ClientService" ToRole="DocumentByService" />
@@ -706,6 +708,7 @@
           <EntitySetMapping Name="ClientService">
             <EntityTypeMapping TypeName="SchoolLanguageModel.ClientService">
               <MappingFragment StoreEntitySet="ClientService">
+                <ScalarProperty Name="IsDelete" ColumnName="IsDelete" />
                 <ScalarProperty Name="Comment" ColumnName="Comment" />
                 <ScalarProperty Name="StartTime" ColumnName="StartTime" />
                 <ScalarProperty Name="ServiceID" ColumnName="ServiceID" />

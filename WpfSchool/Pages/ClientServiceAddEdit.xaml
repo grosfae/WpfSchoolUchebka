@@ -1,0 +1,39 @@
+﻿<Page x:Class="WpfSchool.Pages.ClientServiceAddEdit"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:WpfSchool.Pages"
+      mc:Ignorable="d" 
+      d:DesignHeight="450" d:DesignWidth="800"
+      Title="ClientServiceAddEdit" Loaded="Page_Loaded">
+
+    <Grid Background="White">
+        <StackPanel Width="300" Height="350">
+            <StackPanel Orientation="Horizontal">
+                <TextBlock Text="Услуга: "/>
+                <TextBlock Text="{Binding Title}" Width="250" TextWrapping="Wrap" Height="auto" />
+            </StackPanel>
+            <StackPanel Orientation="Horizontal" Margin="0 10 0 0">
+                <TextBlock Text="Клиент: "/>
+                <ComboBox x:Name="CbClient" DisplayMemberPath="FullName" SelectedItem="{Binding Client}" Width="230"/>
+            </StackPanel>
+            <StackPanel Orientation="Vertical" Margin="0 10 0 0">
+                <TextBlock x:Name="TbTimeService" Text="{Binding StrCostTime, StringFormat='Цена и время услуги: {0}'}" />
+            </StackPanel>
+            <StackPanel Orientation="Horizontal" Margin="0 10 0 0">
+                <TextBlock Text="Дата записи: " />
+                <DatePicker x:Name="DtDate" PreviewTextInput="Date_PreviewTextInput"/>
+            </StackPanel>
+            <StackPanel Orientation="Horizontal" Margin="0 10 0 0">
+                <TextBlock Text="Время записи: " />
+                <TextBox Width="100" x:Name="TbTimeOfTable"  PreviewTextInput="Numbers_PreviewTextInput" MaxLength="5"/>
+            </StackPanel>
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Margin="0 30 0 0">
+                <Button x:Name="SaveBtn" Content="Сохранить" Style="{StaticResource BtnGreen}" Click="SaveBtn_Click"/>
+                <Button x:Name="BackBtn" Content="Назад" Style="{StaticResource BtnGreen}" Click="BackBtn_Click" Margin="10 0 0 0"/>
+            </StackPanel>
+        </StackPanel>
+        
+    </Grid>
+</Page>

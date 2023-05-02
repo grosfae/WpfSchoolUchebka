@@ -8,6 +8,33 @@
             <Setter Property="FontFamily" Value="Comic Sans MS"/>
         </Style>
 
+        <!--ListBox Scroll Button-->
+        <Style TargetType="Button" x:Key="ListScrollBtn">
+            <Setter Property="FontSize" Value="20"/>
+            <Setter Property="Cursor" Value="Hand"/>
+            <Setter Property="Foreground" Value="#FF04A0FF" />
+            <Setter Property="BorderThickness" Value="2"/>
+            <Setter Property="BorderBrush" Value="#FF04A0FF"/>
+            <Setter Property="FontFamily" Value="Resources/Fonts/#Agency FB Cyrillic"/>
+            <Setter Property="Background" Value="White"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type Button}">
+                        <Border Background="{TemplateBinding Background}" CornerRadius="100" BorderThickness="{TemplateBinding BorderThickness}" BorderBrush="{TemplateBinding BorderBrush}">
+                            <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                        </Border>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+            <Style.Triggers>
+                <Trigger Property="IsMouseOver" Value="True">
+                    <Setter Property="BorderBrush" Value="Black"/>
+                    <Setter Property="Background" Value="#FF04A0FF" />
+                    <Setter Property="Foreground" Value="White" />
+                </Trigger>
+            </Style.Triggers>
+        </Style>
+
         <Style TargetType="Button" x:Key="BtnGreen">
             <Setter Property="Foreground" Value="Black"/>
             <Setter Property="Background" Value="#FFE7FABF"/>
@@ -60,7 +87,7 @@
                                                 UpdateSourceTrigger=PropertyChanged}"
                                  x:Name="textSource"
                                  Background="Transparent" BorderThickness="1"
-                                 Panel.ZIndex="2" MaxLength="6" />
+                                 Panel.ZIndex="2" />
                             <TextBox Text="{TemplateBinding Tag}" Background="{TemplateBinding Background}" Panel.ZIndex="1">
                                 <TextBox.Style>
                                     <Style TargetType="{x:Type TextBox}">

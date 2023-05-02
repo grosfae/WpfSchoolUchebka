@@ -16,12 +16,12 @@
         <StackPanel Orientation="Horizontal" Margin="30 0">
             <StackPanel Margin="0 30 0 0">
                 <Image Height="220" Width="220" Source="{Binding Logo}"/>
-                <Button Style="{StaticResource WhiteBtn}" Content="Добавить изображение"/>
+                <Button x:Name="ImageAddBtn" Style="{StaticResource WhiteBtn}" Content="Добавить изображение" Click="ImageAddBtn_Click"/>
             </StackPanel>
             <StackPanel Margin="20 30 0 0">
                 <StackPanel Orientation="Horizontal">
                     <TextBlock Text="Название "/>
-                    <TextBox Width="280" MaxLength="100" Height="auto" MaxHeight="40" TextWrapping="Wrap" Margin="100 0 0 0" Text="{Binding Title}"/>
+                    <TextBox Width="280" MaxLength="100" Height="auto" MaxHeight="40" TextWrapping="Wrap" Margin="100 0 0 0" Text="{Binding Title}" PreviewTextInput="Letters_PreviewTextInput"/>
                 </StackPanel>
                 
                 
@@ -31,40 +31,62 @@
                 </StackPanel>
                 <StackPanel Orientation="Horizontal" Margin="0 10 0 0">
                     <TextBlock Text="Стоимость "/>
-                    <TextBox Width="180" MaxLength="6" Margin="92.5 0 0 0" Text="{Binding Cost}"/>
+                    <TextBox Width="180" MaxLength="6" Margin="92.5 0 0 0" Text="{Binding Cost}" PreviewTextInput="Numbers_PreviewTextInput"/>
                 </StackPanel>
                 <StackPanel Orientation="Horizontal" Margin="0 10 0 0">
-                    <TextBlock Text="Длительность в секундах "/>
-                    <TextBox Width="180" MaxLength="5"  Margin="7 0 0 0" Text="{Binding DurationInSeconds}"/>
+                    <TextBlock Text="Длительность в минутах "/>
+                    <TextBox Width="180" MaxLength="5"  Margin="11 0 0 0" Text="{Binding DurationInSeconds}"  PreviewTextInput="Numbers_PreviewTextInput"/>
                 </StackPanel>
                 <StackPanel Orientation="Horizontal" Margin="0 10 0 0">
                     <TextBlock Text="Скидка "/>
-                    <TextBox Width="180" MaxLength="5"  Margin="115 0 0 0" Text="{Binding Discount}"/>
+                    <TextBox Width="180" MaxLength="5"  Margin="115 0 0 0" Text="{Binding Discount}"  PreviewTextInput="Numbers_PreviewTextInput"/>
                 </StackPanel>
                 <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Margin="0 30 0 0">
-                    <Button x:Name="SaveBtn" Content="Сохранить" Style="{StaticResource BtnGreen}"/>
+                    <Button x:Name="SaveBtn" Content="Сохранить" Style="{StaticResource BtnGreen}" Click="SaveBtn_Click"/>
                     <Button x:Name="BackBtn" Content="Назад" Style="{StaticResource BtnGreen}" Click="BackBtn_Click" Margin="10 0 0 0"/>
                 </StackPanel>
             </StackPanel>
         </StackPanel>
         <StackPanel Grid.Row="1" Orientation="Horizontal" Margin="10 0 0 0">
-            <Button x:Name="LeftBtn" Style="{StaticResource WhiteBtn}" Content="&lt;" FontSize="30" Margin="0 0 10 0" Height="80" Click="LeftBtn_Click"/>
-            <ListView x:Name="LvAdditionImages" d:ItemsSource="{d:SampleData ItemCount=5}" Height="80">
+            <ListView x:Name="LvAdditionImages" d:ItemsSource="{d:SampleData ItemCount=5}" Height="80" Width="475">
                 <ListView.ItemsPanel>
                     <ItemsPanelTemplate>
                         <WrapPanel Orientation="Horizontal"/>
                     </ItemsPanelTemplate>
                 </ListView.ItemsPanel>
+                <ListView.Template>
+                    <ControlTemplate TargetType="ItemsControl">
+                        <StackPanel Orientation="Horizontal">
+
+                            <Button  Style="{StaticResource ListScrollBtn}" Content="◀" Width="35" Height="35" FontSize="17"
+                                                CommandTarget="{Binding ElementName=ScrollElem}"
+                                                Command="{x:Static ScrollBar.LineRightCommand}"
+                                
+                                                VerticalAlignment="Center"/>
+
+                            <ScrollViewer HorizontalScrollBarVisibility="Hidden"
+                                                    x:Name="ScrollElem"
+                                                    CanContentScroll="True"
+                                          
+                                                    >
+                                <ItemsPresenter HorizontalAlignment="Center" RenderTransformOrigin="0.501,0.458"/>
+                            </ScrollViewer>
+
+                            <Button  Style="{StaticResource ListScrollBtn}" Content="▶" Width="35" Height="35" FontSize="17"      
+                                                CommandTarget="{Binding ElementName=ScrollElem}"
+                                                Command="{x:Static ScrollBar.LineRightCommand}"/>
+                        </StackPanel>
+                    </ControlTemplate>
+                </ListView.Template>
                 <ListView.ItemTemplate>
                     <DataTemplate>
-                        <Image Width="70" Height="70" Source="{Binding AdditionImage}"/>
+                        <Image Width="70" Height="70" Source="{Binding PhotoPath}"/>
                     </DataTemplate>
                 </ListView.ItemTemplate>
             </ListView>
-            <Button x:Name="RightBtn" Style="{StaticResource WhiteBtn}" Content="&gt;" FontSize="30" Margin="10 0 0 0" Height="80" Click="RightBtn_Click"/>
             <StackPanel Margin="20 0 0 0" VerticalAlignment="Center">
-                <Button x:Name="AddImageAddition" Content="Добавить доп. изображение" Style="{StaticResource BtnGreen}"/>
-                <Button x:Name="RemoveAdditionImage" Content="Удалить доп. изображение" Style="{StaticResource BtnGreen}" Margin="0 10 0 0"/>
+                <Button x:Name="AddImageAddition" Content="Добавить доп. изображение" Style="{StaticResource BtnGreen}" Click="AddImageAddition_Click"/>
+                <Button x:Name="RemoveAdditionImage" Content="Удалить доп. изображение" Style="{StaticResource BtnGreen}" Margin="0 10 0 0" Click="RemoveAdditionImage_Click"/>
             </StackPanel>
         </StackPanel>
     </Grid>

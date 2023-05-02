@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:WpfSchool"
         mc:Ignorable="d" ResizeMode="CanMinimize"
-        Title="School Language" Height="550" Width="800" SizeToContent="Height" Icon="Resources/school_logo.ico">
+        Title="School Language" Height="550" Width="800" SizeToContent="Height" Icon="Resources/school_logo.ico" Loaded="Window_Loaded">
     <Grid Background="White">
         <Grid.RowDefinitions>
             <RowDefinition Height="40"/>
@@ -18,12 +18,14 @@
             <Button Height="25" Content="Вход" Width="100" Margin="0 5 0 0" Style="{StaticResource BtnGreen}" Click="Button_Click"/>
         </StackPanel>
         <Grid Height="40">
+            <Button x:Name="ServiceListBtn" Style="{StaticResource BtnGreen}" Content="Список услуг" Width="100" Height="30" Margin="70 0 0 0" Click="ServiceListBtn_Click" HorizontalAlignment="Left" />
+            <Button x:Name="ServiceClientListBtn" Style="{StaticResource BtnGreen}" Content="Список записей" Width="100" Height="30" Margin="0 0 70 0" Click="ServiceClientListBtn_Click" HorizontalAlignment="Right" Visibility="Collapsed"/>
             <Image HorizontalAlignment="Left" Source="/Resources/school_logo.ico" RenderOptions.BitmapScalingMode="Fant"  Margin="5 0 0 0"/>
             <Polygon Points="282, 32, 322, 2, 2, 2, 42, 32" Fill="#FF04A0FF" HorizontalAlignment="Center" VerticalAlignment="Top"/>
             <TextBlock x:Name="TbTitlePage" Text="" Foreground="White" HorizontalAlignment="Center" VerticalAlignment="Top" FontSize="20"/>
             
         </Grid>
-        <Frame x:Name="MainFrame" Grid.Row="1" Height="420" NavigationUIVisibility="Hidden" >
+        <Frame x:Name="MainFrame" Grid.Row="1" Height="420" NavigationUIVisibility="Hidden" Navigated="MainFrame_Navigated" >
             
         </Frame>
         

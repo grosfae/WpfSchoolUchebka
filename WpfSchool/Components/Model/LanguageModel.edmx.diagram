@@ -5,18 +5,18 @@
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
       <Diagram DiagramId="82919256efd440ada15e04c9aa42bd21" Name="Diagram1">
-        <EntityTypeShape EntityType="SchoolLanguageModel.Client" Width="1.5" PointX="0.75" PointY="10.875" />
-        <EntityTypeShape EntityType="SchoolLanguageModel.ClientService" Width="1.5" PointX="3" PointY="9.375" />
-        <EntityTypeShape EntityType="SchoolLanguageModel.DocumentByService" Width="1.5" PointX="5.25" PointY="9.875" />
-        <EntityTypeShape EntityType="SchoolLanguageModel.Gender" Width="1.5" PointX="1.5" PointY="15.875" />
+        <EntityTypeShape EntityType="SchoolLanguageModel.Client" Width="1.5" PointX="0.75" PointY="11.125" />
+        <EntityTypeShape EntityType="SchoolLanguageModel.ClientService" Width="1.5" PointX="3" PointY="9.5" />
+        <EntityTypeShape EntityType="SchoolLanguageModel.DocumentByService" Width="1.5" PointX="5.25" PointY="10" />
+        <EntityTypeShape EntityType="SchoolLanguageModel.Gender" Width="1.5" PointX="1.5" PointY="16" />
         <EntityTypeShape EntityType="SchoolLanguageModel.Manufacturer" Width="1.5" PointX="0.75" PointY="2.625" />
         <EntityTypeShape EntityType="SchoolLanguageModel.Product" Width="1.5" PointX="3" PointY="1.875" />
         <EntityTypeShape EntityType="SchoolLanguageModel.ProductPhoto" Width="1.5" PointX="5.25" PointY="5.75" />
         <EntityTypeShape EntityType="SchoolLanguageModel.ProductSale" Width="1.5" PointX="5.25" PointY="2.375" />
-        <EntityTypeShape EntityType="SchoolLanguageModel.Service" Width="1.5" PointX="0.75" PointY="7" />
-        <EntityTypeShape EntityType="SchoolLanguageModel.ServicePhoto" Width="1.5" PointX="3" PointY="18.75" />
+        <EntityTypeShape EntityType="SchoolLanguageModel.Service" Width="1.5" PointX="0.75" PointY="7.25" />
+        <EntityTypeShape EntityType="SchoolLanguageModel.ServicePhoto" Width="1.5" PointX="3" PointY="18.875" />
         <EntityTypeShape EntityType="SchoolLanguageModel.sysdiagrams" Width="1.5" PointX="7.75" PointY="0.75" />
-        <EntityTypeShape EntityType="SchoolLanguageModel.Tag" Width="1.5" PointX="3" PointY="6.75" />
+        <EntityTypeShape EntityType="SchoolLanguageModel.Tag" Width="1.5" PointX="3" PointY="6" />
         <AssociationConnector Association="SchoolLanguageModel.FK_Client_Gender" />
         <AssociationConnector Association="SchoolLanguageModel.FK_ClientService_Client" />
         <AssociationConnector Association="SchoolLanguageModel.FK_ClientService_Service" />
