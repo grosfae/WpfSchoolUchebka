@@ -22,14 +22,20 @@ namespace WpfSchool.Pages
     /// </summary>
     public partial class ServiceListPage : Page
     {
+        int maxPage = 0;
         public ServiceListPage()
         {
             InitializeComponent();
             CbDiscount.SelectedIndex = 0;
             CbSort.SelectedIndex = 0;
-            App.PageName = "Список услуг";   
+            App.PageName = "Список услуг";
+            CbListCount.SelectedIndex = 0;
         }
 
+        int numberPage = 0;
+        int count = 3;
+
+        int fakePage = 1;
         private void ComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             Refresh();
@@ -72,20 +78,49 @@ namespace WpfSchool.Pages
             {
                 services = services.Where(x => x.Discount >= 0.70 && x.Discount < 1).ToList();
             }
-            
-            
-            if (TbSearch.Text.Length > 0)
+
+            if (CbListCount.SelectedIndex == 0)
             {
-                services = services.Where(x => x.Title.ToLower().Contains(TbSearch.Text.ToLower()) || x.Description.ToLower().Contains(TbSearch.Text.ToLower()));
+                count = 3;
+
+            }
+            if (CbListCount.SelectedIndex == 1)
+            {
+                count = 5;
+            }
+            if (CbListCount.SelectedIndex == 2)
+            {
+                count = 10;
             }
 
+            if (TbSearch.Text.Length > 0)
+            {
+                services = services.Where(x => x.Title.ToLower().Contains(TbSearch.Text.ToLower()));
+            }
+
+            if (services.Count() > count)
+            {
+                maxPage = services.Count() / count;
+            }
+            else
+            {
+                maxPage = 1;
+            }
+            if (fakePage > maxPage)
+            {
+                fakePage = maxPage;
+            }
+            services = services.Skip(count * numberPage).Take(count).ToList();
+
             LvService.ItemsSource = services.ToList();
+            TbCounter.Text = $"{fakePage}/{maxPage}";
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
             foreach(var item in App.DB.Service)
             {
+                item.MainImagePath = item.MainImagePath.Trim();
                 item.Logo = File.ReadAllBytes($"C:/Users/progWeb/Desktop/{item.MainImagePath}");
             }
             App.DB.SaveChanges();
@@ -93,6 +128,7 @@ namespace WpfSchool.Pages
 
         private void Page_Loaded(object sender, RoutedEventArgs e)
         {
+            maxPage = App.DB.Service.Count(x => x.IsDelete != true);
             Refresh();
             if(App.AdminMode == true)
             {
@@ -109,9 +145,12 @@ namespace WpfSchool.Pages
         private void DeleteBtn_Click(object sender, RoutedEventArgs e)
         {
             var selectedItem = (sender as Button).DataContext as Service;
-            selectedItem.IsDelete = true;
-            App.DB.SaveChanges();
-            Refresh();
+            if (MessageBox.Show("Сохранить изменения?", "Уведомление", MessageBoxButton.YesNo, MessageBoxImage.Question) == MessageBoxResult.Yes)
+            {
+                selectedItem.IsDelete = true;
+                App.DB.SaveChanges();
+                Refresh();
+            }
         }
 
         private void EditBtn_Click(object sender, RoutedEventArgs e)
@@ -123,6 +162,41 @@ namespace WpfSchool.Pages
         private void AddBtn_Click(object sender, RoutedEventArgs e)
         {
             NavigationService.Navigate(new ServiceAddEdit(new Service()));
+        }
+
+        private void CbListCount_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+         
+            numberPage = 0;
+            fakePage = 1;
+            Refresh();
+        }
+
+        private void LeftBtn_Click(object sender, RoutedEventArgs e)
+        {
+            numberPage--;
+            fakePage--;
+            if (numberPage < 0)
+                numberPage = 0;
+            if (fakePage < 1)
+                fakePage = 1;
+            Refresh();
+        }
+
+        private void RightBtn_Click(object sender, RoutedEventArgs e)
+        {
+            numberPage++;
+            fakePage++;
+            if (numberPage == maxPage)
+            {
+                numberPage = maxPage - 1;
+                fakePage--;
+            }
+
+            if (fakePage < maxPage + 1)
+            {
+                Refresh();
+            }
         }
     }
 }

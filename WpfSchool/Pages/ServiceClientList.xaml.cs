@@ -28,7 +28,7 @@ namespace WpfSchool.Pages
             App.PageName = "Список записей";
             var dispatcherTimer = new System.Windows.Threading.DispatcherTimer();
             dispatcherTimer.Tick += new EventHandler(dispatcherTimer_Tick);
-            dispatcherTimer.Interval = new TimeSpan(0, 0, 10);
+            dispatcherTimer.Interval = new TimeSpan(0, 0, 30);
             dispatcherTimer.Start();
         }
         private void TextBox_TextChanged(object sender, TextChangedEventArgs e)
@@ -64,7 +64,7 @@ namespace WpfSchool.Pages
         private void dispatcherTimer_Tick(object sender, EventArgs e)
         {
             // Updating the Label which displays the current second
-            TbSearch.Text = string.Empty;
+            
             Refresh();
 
             // Forcing the CommandManager to raise the RequerySuggested event

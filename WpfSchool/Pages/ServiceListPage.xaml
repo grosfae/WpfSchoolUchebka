@@ -13,20 +13,21 @@
         <Grid.RowDefinitions>
             <RowDefinition Height="65"/>
             <RowDefinition/>
+            <RowDefinition Height="40"/>
         </Grid.RowDefinitions>
         <Grid Height="70">
             <StackPanel HorizontalAlignment="Left">
                 <TextBlock Text="Поиск" Foreground="Black" HorizontalAlignment="Center" FontSize="20"/>
                 <TextBox x:Name="TbSearch" Style="{StaticResource placeHolderForPrice}" Width="210" Height="30" Tag="Введите название услуги" FontSize="16" Margin="10 00 0 0" TextChanged="TextBox_TextChanged"/>
             </StackPanel>
-            <StackPanel HorizontalAlignment="Left" Margin="300 00 0 0">
+            <StackPanel HorizontalAlignment="Left" Margin="230 00 0 0">
                 <TextBlock Text="Сортировка" Foreground="Black" HorizontalAlignment="Center" FontSize="20"/>
                 <ComboBox x:Name="CbSort" Height="30" Width="150" FontSize="14" SelectionChanged="ComboBox_SelectionChanged">
                     <ComboBoxItem>По возрастанию</ComboBoxItem>
                     <ComboBoxItem>По убыванию</ComboBoxItem>
                 </ComboBox>
             </StackPanel>
-            <StackPanel HorizontalAlignment="Right" Margin="0 00 100 0">
+            <StackPanel HorizontalAlignment="Right" Margin="0 00 250 0">
                 <TextBlock Text="Скидка" Foreground="Black" HorizontalAlignment="Center" FontSize="20"/>
                 <ComboBox x:Name="CbDiscount" Height="30" Width="150" FontSize="14" SelectionChanged="ComboBox_SelectionChanged">
                     <ComboBoxItem>Все</ComboBoxItem>
@@ -37,13 +38,21 @@
                     <ComboBoxItem>от 70 до 100</ComboBoxItem>
                 </ComboBox>
             </StackPanel>
+            <StackPanel HorizontalAlignment="Right" Margin="0 7 70 0">
+                <TextBlock Text="Отображать записей:" Foreground="Black" HorizontalAlignment="Center" FontSize="15"/>
+                <ComboBox x:Name="CbListCount" Height="30" Width="150" FontSize="14" SelectionChanged="CbListCount_SelectionChanged">
+                    <ComboBoxItem>3</ComboBoxItem>
+                    <ComboBoxItem>5</ComboBoxItem>
+                    <ComboBoxItem>10</ComboBoxItem>
+                </ComboBox>
+            </StackPanel>
             <Button x:Name="AddBtn" Visibility="Collapsed" Click="AddBtn_Click" Style="{StaticResource ListScrollBtn}" Height="30" Width="30" HorizontalAlignment="Right" Margin="0 20 10 0" Content="+" FontSize="16" Cursor="Hand"/>
         </Grid>
-        <ListView x:Name="LvService" Grid.Row="1" Height="375" d:ItemsSource="{d:SampleData ItemCount=5}">
+        <ListView x:Name="LvService" Grid.Row="1" Height="340" d:ItemsSource="{d:SampleData ItemCount=5}">
             <ListView.ItemTemplate>
                 <DataTemplate>
                     <StackPanel Margin="0 10 0 0" Orientation="Horizontal">
-                        <Image Source="{Binding Logo}" Height="100" Width="100"/>
+                        <Image Source="{Binding Logo}" Height="100" Width="100" RenderOptions.BitmapScalingMode="Fant"/>
                         <StackPanel Orientation="Horizontal">
                             <StackPanel Margin="10 0 0 0">
                                 <TextBlock Text="{Binding Title}" TextWrapping="Wrap" FontSize="15" MaxHeight="50"/>
@@ -64,5 +73,15 @@
                 </DataTemplate>
             </ListView.ItemTemplate>
         </ListView>
+        <StackPanel Grid.Row="2" VerticalAlignment="Center">
+            <Separator Margin="0 0 0 3" Background="Black"/>
+            <StackPanel  Orientation="Horizontal" HorizontalAlignment="Center" Height="30">
+                <Button x:Name="LeftBtn" Style="{StaticResource WhiteBtn}" Width="30" Content="&lt;" FontSize="20" Click="LeftBtn_Click"/>
+                <TextBlock x:Name="TbCounter" Text="54/100" FontSize="20" HorizontalAlignment="Center" Margin="5 0 5 0"/>
+                <Button x:Name="RightBtn" Style="{StaticResource WhiteBtn}" Width="30"  Content="&gt;" FontSize="20" Click="RightBtn_Click"/>
+            </StackPanel>
+        </StackPanel>
+
+
     </Grid>
 </Page>

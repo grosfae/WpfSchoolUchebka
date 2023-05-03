@@ -25,14 +25,13 @@ namespace WpfSchool.Components.Model
             }
         }
 
-        public TimeSpan TimeHas
+        public string TimeHas
         {
             get
             {
-                TimeSpan Timer = new TimeSpan();
-                 Timer = (StartTime - DateTime.Now);
-  
-                return Timer;
+                var timer = StartTime - DateTime.Now;
+
+                return $"Начало через {timer.ToString(@"hh\:mm")}";
 
 
             }

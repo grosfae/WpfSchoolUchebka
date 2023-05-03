@@ -40,7 +40,7 @@
                                             <TextBlock Text="Дата и время записи " Margin="0 5 0 0"/>
                                             <TextBlock Text="{Binding StartTime, StringFormat=F ,ConverterCulture=Ru}" Margin="0 5 0 0"/>
                                         </StackPanel>
-                                        <TextBlock  Text="{Binding TimeHas,StringFormat=t}" Margin="0 5 0 0"/>
+                                        <TextBlock  Text="{Binding TimeHas}" Margin="0 5 0 0"/>
                                     </StackPanel>
                                 </StackPanel>
 

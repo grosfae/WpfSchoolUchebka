@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:WpfSchool"
         mc:Ignorable="d" ResizeMode="CanMinimize"
-        Title="School Language" Height="550" Width="800" SizeToContent="Height" Icon="Resources/school_logo.ico" Loaded="Window_Loaded">
+        Title="School Language" Height="650" Width="800" SizeToContent="Height" Icon="Resources/school_logo.ico" Loaded="Window_Loaded">
     <Grid Background="White">
         <Grid.RowDefinitions>
             <RowDefinition Height="40"/>
