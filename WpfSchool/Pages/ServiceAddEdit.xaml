@@ -20,6 +20,10 @@
             </StackPanel>
             <StackPanel Margin="20 30 0 0">
                 <StackPanel Orientation="Horizontal">
+                    <TextBlock Text="Код услуги "/>
+                    <TextBlock Width="280"  TextWrapping="Wrap" Margin="90 0 0 0" Text="{Binding ID}" />
+                </StackPanel>
+                <StackPanel Orientation="Horizontal" Margin="0 10 0 0">
                     <TextBlock Text="Название "/>
                     <TextBox Width="280" MaxLength="100" Height="auto" MaxHeight="40" TextWrapping="Wrap" Margin="100 0 0 0" Text="{Binding Title}" PreviewTextInput="Letters_PreviewTextInput"/>
                 </StackPanel>
