@@ -75,6 +75,13 @@ namespace WpfSchool.Pages
                 e.Handled = true;
             }
         }
+        private void ForSpaces_PreviewKeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.Key == Key.Space)
+            {
+                e.Handled = true;
+            }
+        }
 
         private void SaveBtn_Click(object sender, RoutedEventArgs e)
         {
@@ -87,11 +94,15 @@ namespace WpfSchool.Pages
             {
                 errorMessage += "Введите корректную цену\n";
             }
-            if (int.Parse(TbInMinutes.Text) <= 0 || int.Parse(TbInMinutes.Text) > 240)
+            if (TbInMinutes.Text == String.Empty || int.Parse(TbInMinutes.Text) <= 0 || int.Parse(TbInMinutes.Text) > 240)
             {
                 errorMessage += "Введите корректное время\n";
             }
 
+            if (TbDicsount.Text == String.Empty)
+            {
+
+            }
             if (string.IsNullOrWhiteSpace(errorMessage) == false)
             {
                 MessageBox.Show(errorMessage);
