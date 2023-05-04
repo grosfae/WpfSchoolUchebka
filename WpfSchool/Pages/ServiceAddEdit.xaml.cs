@@ -95,15 +95,17 @@ namespace WpfSchool.Pages
                 MessageBox.Show(errorMessage);
                 return;
             }
-
-            foreach(var item in App.DB.Service)
+            if (contextService.ID == 0)
             {
-                if(item.Title == contextService.Title)
+                foreach (var item in App.DB.Service)
                 {
-                    MessageBox.Show("Услуга с таким названием уже существует");
-                    return;
+                    if (item.Title == contextService.Title)
+                    {
+                        MessageBox.Show("Услуга с таким названием уже существует");
+                        return;
+                    }
+
                 }
-                
             }
 
             if (MessageBox.Show("Сохранить изменения?", "Уведомление", MessageBoxButton.YesNo, MessageBoxImage.Question) == MessageBoxResult.Yes)

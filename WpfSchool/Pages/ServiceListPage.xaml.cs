@@ -100,7 +100,14 @@ namespace WpfSchool.Pages
 
             if (services.Count() > count)
             {
-                maxPage = services.Count() / count;
+                if (services.Count() % count > 0)
+                {
+                    maxPage = (services.Count() / count) + 1;
+                }
+                else
+                {
+                    maxPage = services.Count() / count;
+                }
             }
             else
             {

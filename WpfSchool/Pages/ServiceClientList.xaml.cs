@@ -45,7 +45,7 @@ namespace WpfSchool.Pages
                 clients = clients.Where(x => x.Service.Title.ToLower().Contains(TbSearch.Text.ToLower()) || x.Client.FullName.ToLower().Contains(TbSearch.Text.ToLower()));
             }
             
-            LvService.ItemsSource = clients.Where(x => x.StartTime  < DateTime.Now + TimeSpan.FromDays(2) && x.StartTime > DateTime.Now.Date).ToList();
+            LvService.ItemsSource = clients.Where(x => (x.StartTime <(DateTime.Now.Date + TimeSpan.FromHours(48)) && x.StartTime > DateTime.Now)).ToList();
         }
 
         private void Page_Loaded(object sender, RoutedEventArgs e)

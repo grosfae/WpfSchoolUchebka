@@ -33,41 +33,49 @@ namespace WpfSchool.Pages
 
         private void SaveBtn_Click(object sender, RoutedEventArgs e)
         {
-            string errorMessage = "";
-            if (CbClient.SelectedItem == null)
+            try
             {
-                errorMessage += "Выберите клиента\n";
-            }
-            if (string.IsNullOrWhiteSpace(TbTimeOfTable.Text))
-            {
-                errorMessage += "Введите корректное время\n";
-            }
-
-            if (string.IsNullOrWhiteSpace(DtDate.Text))
-            {
-                errorMessage += "Введите корректную дату\n";
-            }
-
-            if (string.IsNullOrWhiteSpace(errorMessage) == false)
-            {
-                MessageBox.Show(errorMessage);
-                return;
-            }
-
-            if (MessageBox.Show("Сохранить изменения?", "Уведомление", MessageBoxButton.YesNo, MessageBoxImage.Question) == MessageBoxResult.Yes)
-            {
-                if (contextClientService.ID != 0)
+                string errorMessage = "";
+                if (CbClient.SelectedItem == null)
                 {
-                    ClientService clientService = new ClientService();
-                    clientService.ServiceID = contextClientService.ID;
-                    var client = CbClient.SelectedItem as Client;
-                    clientService.ClientID = client.ID;
-                    string TimeItog = DtDate.Text + " " + TbTimeOfTable.Text;
-                    clientService.StartTime = DateTime.Parse(TimeItog);
-                    App.DB.ClientService.Add(clientService);
+                    errorMessage += "Выберите клиента\n";
                 }
-                App.DB.SaveChanges();
-                NavigationService.GoBack();
+                if (string.IsNullOrWhiteSpace(TbTimeOfTable.Text))
+                {
+                    errorMessage += "Введите корректное время\n";
+                }
+            
+                string TimeItog = DtDate.Text + " " + TbTimeOfTable.Text;
+                if (string.IsNullOrWhiteSpace(DtDate.Text) || DateTime.Parse(TimeItog) < DateTime.Now.AddMinutes(2))
+                {
+                    errorMessage += "Введите корректную дату или время\n";
+                }
+
+                if (string.IsNullOrWhiteSpace(errorMessage) == false)
+                {
+                    MessageBox.Show(errorMessage);
+                    return;
+                }
+
+           
+                if (MessageBox.Show("Сохранить изменения?", "Уведомление", MessageBoxButton.YesNo, MessageBoxImage.Question) == MessageBoxResult.Yes)
+                {
+                    if (contextClientService.ID != 0)
+                    {
+                        ClientService clientService = new ClientService();
+                        clientService.ServiceID = contextClientService.ID;
+                        var client = CbClient.SelectedItem as Client;
+                        clientService.ClientID = client.ID;
+                        clientService.StartTime = DateTime.Parse(TimeItog);
+                        App.DB.ClientService.Add(clientService);
+                    }
+                    App.DB.SaveChanges();
+                    NavigationService.GoBack();
+                }
+            }
+            catch
+            {
+                MessageBox.Show("Вы выбрали не верное время");
             }
         }
 

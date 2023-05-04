@@ -51,7 +51,7 @@
         <ListView x:Name="LvService" Grid.Row="1" Height="340" d:ItemsSource="{d:SampleData ItemCount=5}">
             <ListView.ItemTemplate>
                 <DataTemplate>
-                    <StackPanel Margin="0 10 0 0" Orientation="Horizontal">
+                    <StackPanel Margin="0 10 0 0" Orientation="Horizontal" Background="{Binding Color}" Width="760">
                         <Image Source="{Binding Logo}" Height="100" Width="100" RenderOptions.BitmapScalingMode="Fant"/>
                         <StackPanel Orientation="Horizontal">
                             <StackPanel Margin="10 0 0 0">
