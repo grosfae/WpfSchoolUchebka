@@ -6,11 +6,11 @@
       xmlns:local="clr-namespace:WpfSchool.Pages"
       mc:Ignorable="d" 
       d:DesignHeight="450" d:DesignWidth="800"
-      Title="ServiceAddEdit">
+      Title="ServiceAddEdit" Loaded="Page_Loaded">
 
     <Grid Background="White">
         <Grid.RowDefinitions>
-            <RowDefinition Height="350"/>
+            <RowDefinition Height="300"/>
             <RowDefinition/>
         </Grid.RowDefinitions>
         <StackPanel Orientation="Horizontal" Margin="30 0">
@@ -31,7 +31,7 @@
                 
                 <StackPanel Orientation="Horizontal" Margin="0 10 0 0">
                     <TextBlock Text="Описание "/>
-                    <TextBox Width="280" Height="auto" TextWrapping="Wrap" AcceptsReturn="True"  Margin="96 0 0 0" MaxHeight="130" Text="{Binding Description}"/>
+                    <TextBox Width="280" Height="auto" TextWrapping="Wrap" AcceptsReturn="True"  Margin="96 0 0 0" MaxHeight="60" Text="{Binding Description}"/>
                 </StackPanel>
                 <StackPanel Orientation="Horizontal" Margin="0 10 0 0">
                     <TextBlock Text="Стоимость "/>
@@ -52,42 +52,22 @@
             </StackPanel>
         </StackPanel>
         <StackPanel Grid.Row="1" Orientation="Horizontal" Margin="10 0 0 0">
-            <ListView x:Name="LvAdditionImages" d:ItemsSource="{d:SampleData ItemCount=5}" Height="80" Width="475">
-                <ListView.ItemsPanel>
-                    <ItemsPanelTemplate>
-                        <WrapPanel Orientation="Horizontal"/>
-                    </ItemsPanelTemplate>
-                </ListView.ItemsPanel>
-                <ListView.Template>
-                    <ControlTemplate TargetType="ItemsControl">
-                        <StackPanel Orientation="Horizontal">
-
-                            <Button  Style="{StaticResource ListScrollBtn}" Content="◀" Width="35" Height="35" FontSize="17"
-                                                CommandTarget="{Binding ElementName=ScrollElem}"
-                                                Command="{x:Static ScrollBar.LineRightCommand}"
-                                
-                                                VerticalAlignment="Center"/>
-
-                            <ScrollViewer HorizontalScrollBarVisibility="Hidden"
-                                                    x:Name="ScrollElem"
-                                                    CanContentScroll="True"
-                                          
-                                                    >
-                                <ItemsPresenter HorizontalAlignment="Center" RenderTransformOrigin="0.501,0.458"/>
-                            </ScrollViewer>
-
-                            <Button  Style="{StaticResource ListScrollBtn}" Content="▶" Width="35" Height="35" FontSize="17"      
-                                                CommandTarget="{Binding ElementName=ScrollElem}"
-                                                Command="{x:Static ScrollBar.LineRightCommand}"/>
-                        </StackPanel>
-                    </ControlTemplate>
-                </ListView.Template>
-                <ListView.ItemTemplate>
-                    <DataTemplate>
-                        <Image Width="70" Height="70" Source="{Binding PhotoPath}"/>
-                    </DataTemplate>
-                </ListView.ItemTemplate>
-            </ListView>
+            <StackPanel Orientation="Horizontal" >
+                <Button x:Name="BtnLeft"  Style="{StaticResource ListScrollBtn}" Content="◀" Width="35" Height="35" FontSize="17" Click="BtnLeft_Click"/>
+                <ListView x:Name="LvAdditionImages" d:ItemsSource="{d:SampleData ItemCount=5}" Height="120" Width="445" ScrollViewer.HorizontalScrollBarVisibility="Hidden" BorderBrush="Transparent">
+                    <ListView.ItemsPanel>
+                        <ItemsPanelTemplate>
+                            <WrapPanel Orientation="Horizontal"/>
+                        </ItemsPanelTemplate>
+                    </ListView.ItemsPanel>
+                    <ListView.ItemTemplate>
+                        <DataTemplate>
+                            <Image Width="100" Height="100" Source="{Binding PhotoPath}"/>
+                        </DataTemplate>
+                    </ListView.ItemTemplate>
+                </ListView>
+                <Button x:Name="BtnRight"  Style="{StaticResource ListScrollBtn}" Content="▶" Width="35" Height="35" FontSize="17" Click="BtnRight_Click"/>
+            </StackPanel>
             <StackPanel Margin="20 0 0 0" VerticalAlignment="Center">
                 <Button x:Name="AddImageAddition" Content="Добавить доп. изображение" Style="{StaticResource BtnGreen}" Click="AddImageAddition_Click"/>
                 <Button x:Name="RemoveAdditionImage" Content="Удалить доп. изображение" Style="{StaticResource BtnGreen}" Margin="0 10 0 0" Click="RemoveAdditionImage_Click"/>

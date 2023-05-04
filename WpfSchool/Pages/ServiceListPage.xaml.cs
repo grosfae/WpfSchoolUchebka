@@ -152,7 +152,13 @@ namespace WpfSchool.Pages
         private void DeleteBtn_Click(object sender, RoutedEventArgs e)
         {
             var selectedItem = (sender as Button).DataContext as Service;
-            if (MessageBox.Show("Сохранить изменения?", "Уведомление", MessageBoxButton.YesNo, MessageBoxImage.Question) == MessageBoxResult.Yes)
+            var checkWrites = App.DB.ClientService.FirstOrDefault(x => x.ServiceID == selectedItem.ID);
+            if(checkWrites != null)
+            {
+                MessageBox.Show("На эту услугу есть записи, ее нельзя удалить");
+                return;
+            }
+            if (MessageBox.Show("Вы уверены?", "Уведомление", MessageBoxButton.YesNo, MessageBoxImage.Question) == MessageBoxResult.Yes)
             {
                 selectedItem.IsDelete = true;
                 App.DB.SaveChanges();

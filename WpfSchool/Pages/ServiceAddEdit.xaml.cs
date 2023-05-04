@@ -27,6 +27,7 @@ namespace WpfSchool.Pages
     public partial class ServiceAddEdit : Page
     {
         Service contextService;
+        int maxPage = 0;
         public ServiceAddEdit(Service service)
         {
             InitializeComponent();
@@ -38,7 +39,10 @@ namespace WpfSchool.Pages
             App.PageName = "Редактирование услуги";
         }
 
+        int numberPage = 0;
+        int count = 4;
 
+        int fakePage = 1;
         private void BackBtn_Click(object sender, RoutedEventArgs e)
         {
             contextService.DurationInSeconds *= 60;
@@ -137,8 +141,9 @@ namespace WpfSchool.Pages
                 serPhoto.ServiceID = contextService.ID;
                 App.DB.ServicePhoto.Add(serPhoto);
                 App.DB.SaveChanges();
-                LvAdditionImages.ItemsSource = contextService.ServicePhoto;
+                
             }
+            Refresh();
         }
 
         private void RemoveAdditionImage_Click(object sender, RoutedEventArgs e)
@@ -153,7 +158,70 @@ namespace WpfSchool.Pages
             {
                 App.DB.ServicePhoto.Remove(selectedPhoto);
                 App.DB.SaveChanges();
-                LvAdditionImages.ItemsSource = contextService.ServicePhoto;
+                
+            }
+            numberPage = 0;
+            fakePage = 1;
+            Refresh();
+        }
+
+        private void Refresh()
+        {
+            var services = contextService.ServicePhoto;
+            maxPage = services.Count();
+            if (services.Count() > count)
+            {
+                if (services.Count() % count > 0)
+                {
+                    maxPage = (services.Count() / count) + 1;
+                }
+                else
+                {
+                    maxPage = services.Count() / count;
+                }
+            }
+            else
+            {
+                maxPage = 1;
+            }
+            if (fakePage > maxPage)
+            {
+                fakePage = maxPage;
+            }
+            services = services.Skip(count * numberPage).Take(count).ToList();
+
+            LvAdditionImages.ItemsSource = services.ToList();
+        }
+
+        private void Page_Loaded(object sender, RoutedEventArgs e)
+        {
+            maxPage = contextService.ServicePhoto.Count();
+            Refresh();
+        }
+
+        private void BtnLeft_Click(object sender, RoutedEventArgs e)
+        {
+            numberPage--;
+            fakePage--;
+            if (numberPage < 0)
+                numberPage = 0;
+            if (fakePage < 1)
+                fakePage = 1;
+            Refresh();
+        }
+        private void BtnRight_Click(object sender, RoutedEventArgs e)
+        {
+            numberPage++;
+            fakePage++;
+            if (numberPage == maxPage)
+            {
+                numberPage = maxPage - 1;
+                fakePage--;
+            }
+
+            if (fakePage < maxPage + 1)
+            {
+                Refresh();
             }
         }
     }

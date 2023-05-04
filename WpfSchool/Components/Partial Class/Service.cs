@@ -82,5 +82,7 @@ namespace WpfSchool.Components.Model
                     return Visibility.Collapsed;
             }
         }
+
+        
     }
 }
