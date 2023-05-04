@@ -83,6 +83,28 @@ namespace WpfSchool.Components.Model
             }
         }
 
-        
+       public double DiscountInDouble
+        {
+            get
+            {
+                if (Discount == 0 || Discount == null)
+                {
+                    return 0;
+                }
+
+                else
+                {
+                    return (double)Discount * 100;
+                }
+            }
+        }
+
+        public int DurationInMinutes
+        {
+            get
+            {
+                return DurationInSeconds / 60;
+            }
+        }
     }
 }

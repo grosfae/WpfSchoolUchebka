@@ -33,10 +33,10 @@ namespace WpfSchool.Pages
             InitializeComponent();
             contextService = service;
             DataContext = contextService;
-            contextService.DurationInSeconds /= 60;
-            contextService.Discount *= 100;
             LvAdditionImages.ItemsSource = contextService.ServicePhoto;
             App.PageName = "Редактирование услуги";
+            TbInMinutes.Text = contextService.DurationInMinutes.ToString();
+            TbDicsount.Text = contextService.DiscountInDouble.ToString();
         }
 
         int numberPage = 0;
@@ -45,8 +45,6 @@ namespace WpfSchool.Pages
         int fakePage = 1;
         private void BackBtn_Click(object sender, RoutedEventArgs e)
         {
-            contextService.DurationInSeconds *= 60;
-            contextService.Discount /= 100;
             NavigationService.Navigate(new ServiceListPage());
         }
 
@@ -89,7 +87,7 @@ namespace WpfSchool.Pages
             {
                 errorMessage += "Введите корректную цену\n";
             }
-            if (contextService.DurationInSeconds <= 0 || contextService.DurationInSeconds > 999)
+            if (int.Parse(TbInMinutes.Text) <= 0 || int.Parse(TbInMinutes.Text) > 240)
             {
                 errorMessage += "Введите корректное время\n";
             }
@@ -114,8 +112,8 @@ namespace WpfSchool.Pages
 
             if (MessageBox.Show("Сохранить изменения?", "Уведомление", MessageBoxButton.YesNo, MessageBoxImage.Question) == MessageBoxResult.Yes)
             {
-                contextService.DurationInSeconds *= 60;
-                contextService.Discount /= 100;
+                contextService.DurationInSeconds = int.Parse(TbInMinutes.Text)  * 60;
+                contextService.Discount = int.Parse(TbDicsount.Text) / 100;
                 if (contextService.ID == 0)
                 {
                     App.DB.Service.Add(contextService);

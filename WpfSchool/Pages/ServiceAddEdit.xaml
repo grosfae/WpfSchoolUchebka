@@ -39,11 +39,11 @@
                 </StackPanel>
                 <StackPanel Orientation="Horizontal" Margin="0 10 0 0">
                     <TextBlock Text="Длительность в минутах "/>
-                    <TextBox Width="180" MaxLength="5"  Margin="11 0 0 0" Text="{Binding DurationInSeconds}"  PreviewTextInput="Numbers_PreviewTextInput"/>
+                    <TextBox Width="180" MaxLength="5"  Margin="11 0 0 0" x:Name="TbInMinutes"  PreviewTextInput="Numbers_PreviewTextInput"/>
                 </StackPanel>
                 <StackPanel Orientation="Horizontal" Margin="0 10 0 0">
                     <TextBlock Text="Скидка "/>
-                    <TextBox Width="180" MaxLength="5"  Margin="115 0 0 0" Text="{Binding Discount}"  PreviewTextInput="Numbers_PreviewTextInput"/>
+                    <TextBox Width="180" MaxLength="5"  Margin="115 0 0 0" x:Name="TbDicsount"  PreviewTextInput="Numbers_PreviewTextInput"/>
                 </StackPanel>
                 <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Margin="0 30 0 0">
                     <Button x:Name="SaveBtn" Content="Сохранить" Style="{StaticResource BtnGreen}" Click="SaveBtn_Click"/>
