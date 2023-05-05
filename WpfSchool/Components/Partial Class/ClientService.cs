@@ -20,7 +20,7 @@ namespace WpfSchool.Components.Model
                 }
                 else
                 {
-                    return "white";
+                    return "black";
                 }
             }
         }

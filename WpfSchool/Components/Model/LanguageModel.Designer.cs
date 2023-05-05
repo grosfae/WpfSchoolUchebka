@@ -1,4 +1,4 @@
-﻿// Создание кода T4 для модели "C:\Users\progWeb\source\repos\WpfSchool\WpfSchool\Components\Model\LanguageModel.edmx" включено. 
+﻿// Создание кода T4 для модели "C:\Users\grosf\source\repos\WpfSchoolUchebka\WpfSchool\Components\Model\LanguageModel.edmx" включено. 
 // Чтобы включить формирование кода прежних версий, измените значение свойства "Стратегия создания кода" конструктора
 // на "Legacy ObjectContext". Это свойство доступно в окне "Свойства", если модель
 // открыта в конструкторе.
